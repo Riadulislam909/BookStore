@@ -1,12 +1,19 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-const TaskAction = ({ onSearch }) => {
+const TaskAction = ({ onSearch, onSort }) => {
   const [searchItem, setSearchItem] = useState("");
+  const [sortBy, setSortBy] = useState("");
   function handleSearchBtn(e) {
     e.preventDefault();
     onSearch(searchItem);
   }
+  function handleSort(e) {
+    const sortingValue = e.target.value; // for avoiding async nature we need to set value in a variable first
+    setSortBy(sortingValue);
+    onSort(sortingValue);
+  }
+
   return (
     <>
       <header className="mb-8 lg:mb-10 mx-auto max-w-7xl">
@@ -63,6 +70,8 @@ const TaskAction = ({ onSearch }) => {
               className="cursor-pointer rounded-md border px-4 py-2 text-center text-gray-600"
               name="sortBy"
               id="sortBy"
+              value={sortBy}
+              onChange={handleSort}
             >
               <option value="">Sort</option>
               <option value="name_asc">Name (A-Z)</option>

@@ -1,4 +1,4 @@
-export const ititialData = [
+export const initialData = [
   {
     id: 0,
     bookName: "To Kill a Mockingbird(1960)",

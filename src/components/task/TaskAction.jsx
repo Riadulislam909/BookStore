@@ -1,4 +1,12 @@
-const TaskAction = () => {
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+
+const TaskAction = ({ onSearch }) => {
+  const [searchItem, setSearchItem] = useState("");
+  function handleSearchBtn(e) {
+    e.preventDefault();
+    onSearch(searchItem);
+  }
   return (
     <>
       <header className="mb-8 lg:mb-10 mx-auto max-w-7xl">
@@ -18,11 +26,14 @@ const TaskAction = () => {
                     className="z-20 block w-full bg-white px-4 py-2.5 pr-10 text-[#1C4336] placeholder:text-[#1C4336] focus:outline-none"
                     placeholder="Search Book with Name"
                     required
+                    value={searchItem}
+                    onChange={(e) => setSearchItem(e.target.value)}
                   />
                   <div className="absolute right-0 top-0 flex h-full items-center">
                     <button
                       type="submit"
                       className="mr-1.5 flex items-center space-x-1.5 rounded-md rounded-e-lg bg-[#1C4336] px-4 py-2.5 text-sm text-white"
+                      onClick={handleSearchBtn}
                     >
                       <svg
                         className="h-[14px] w-[14px]"

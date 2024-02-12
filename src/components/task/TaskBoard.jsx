@@ -52,12 +52,20 @@ const TaskBoard = () => {
       setBooks(sortedBooks);
     }
   }
-
+  function handleFavourite(bookId, isFavourite) {
+    let toggledFav = books.map((book) => {
+      if (book.id === bookId) {
+        return { ...book, isFavourite: !isFavourite };
+      }
+      return book;
+    });
+    setBooks(toggledFav);
+  }
   return (
     <>
       <main className="my-10 lg:my-14">
         <TaskAction onSearch={handleSearch} onSort={handleSorting} />
-        <BookList books={books} />
+        <BookList books={books} onFav={handleFavourite} />
       </main>
     </>
   );
